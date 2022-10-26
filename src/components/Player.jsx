@@ -55,9 +55,9 @@ const Player = () => {
               className="bg-primary cursor-pointer rounded-full flex-center w-[25px] h-[25px] shadow-[0_0_18px_rgba(255,255,255,0.3)]"
             >
               {isPlaying ? (
-                images.playIcon
-              ) : (
                 <FaPause className="fill-[#efeee0] md:w-2 md:h-2" />
+              ) : (
+                images.playIcon
               )}
             </div>
             <span>{images.nextIcon}</span>
