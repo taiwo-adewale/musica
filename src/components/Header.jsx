@@ -3,12 +3,12 @@ import React from "react";
 import { FiSearch } from "react-icons/fi";
 import { images } from "../constants";
 
-const Header = ({ setIsToggled, isAlbum }) => {
+const Header = ({ setIsToggled, isSongDetails }) => {
   return (
     <header
       id="header"
       className={`fixed left-0 right-0 top-0 z-[4] transition-all duration-150 ${
-        isAlbum ? "" : "bg-bgDark"
+        isSongDetails ? "" : "bg-bgDark"
       }`}
     >
       <div className="flex items-center h-[70px] px-[28px] gap-x-9">
@@ -16,7 +16,7 @@ const Header = ({ setIsToggled, isAlbum }) => {
 
         <div
           className={`hidden sm:flex items-center gap-x-2 px-3 py-1 rounded-lg ${
-            isAlbum ? "" : "bg-altDark"
+            isSongDetails ? "" : "bg-altDark"
           }`}
         >
           <FiSearch className="w-5 h-5 stroke-[rgba(255,255,255,0.25)]" />

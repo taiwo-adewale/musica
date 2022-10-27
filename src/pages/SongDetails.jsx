@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import { images } from "../constants";
 import { AppWrap } from "../wrapper";
 import { albumSongs } from "../data";
 
-const Album = () => {
+const SongDetails = () => {
+  const { songid } = useParams();
+  console.log(songid);
+
   useEffect(() => {
     const addHeaderBg = () => {
       const header = document.querySelector("#header");
@@ -102,4 +106,4 @@ const Album = () => {
   );
 };
 
-export default AppWrap(Album, "album");
+export default AppWrap(SongDetails, "songdetails");
