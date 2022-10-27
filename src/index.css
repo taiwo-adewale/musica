@@ -78,13 +78,6 @@ svg {
   }
 }
 
-.app__color-dodge {
-  background: #7a9096;
-  mix-blend-mode: color-dodge;
-  opacity: 0.45;
-  filter: blur(25.5786px);
-}
-
 .collections-grid {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
