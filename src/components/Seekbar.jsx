@@ -1,12 +1,13 @@
 import React from "react";
 import { Slider } from "@mui/material";
 
-const Seekbar = ({ seekTime, setSeekTime }) => {
+const Seekbar = ({ appTime, setSeekTime, min, max }) => {
   return (
     <Slider
-      value={seekTime}
-      min={0}
-      max={100}
+      value={appTime}
+      min={min}
+      max={max}
+      step={0.5}
       onChange={(e) => setSeekTime(e.target.value)}
       className="app__player-slider"
     />

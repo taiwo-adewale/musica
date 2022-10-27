@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 
-.env
 
 # Editor directories and files
 .vscode/*
@@ -24,3 +23,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment
+.env
+
+# Test file
+src/songsData.js
