@@ -8,16 +8,14 @@ const VolumeBar = ({ volume, setVolume }) => {
     <div className="md:w-[15%] hidden md:block">
       <div className="flex items-center gap-x-1.5">
         <span
-          onClick={() =>
-            setVolume((prevVolume) => (prevVolume === 0 ? 100 : 0))
-          }
+          onClick={() => setVolume((prevVolume) => (prevVolume === 0 ? 1 : 0))}
         >
           {images.volumeIcon}
         </span>
 
         <Slider
           value={volume}
-          onChange={setVolume}
+          onChange={(e) => setVolume(e.target.value)}
           min={0}
           max={1}
           step={0.01}

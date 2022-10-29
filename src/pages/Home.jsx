@@ -3,16 +3,12 @@ import { useDispatch } from "react-redux";
 
 import { AppWrap } from "../wrapper";
 import { images } from "../constants";
-// import { useGetTopChartsQuery } from "../redux/services/shazamCore";
-import topChartsData from "../songsData";
 import { TopCharts, SongSlider } from "../components";
 // import { topCharts, likes, newReleases, popular } from "../data";
 import { likes, newReleases, popular } from "../data";
 import { setActiveSong } from "../redux/features/playerSlice";
 
 const Home = () => {
-  // const { data: topChartsData } = useGetTopChartsQuery();
-
   return (
     <>
       <div className="flex flex-wrap midMd:flex-nowrap w-full gap-x-6 gap-y-6 py-4">
@@ -65,8 +61,10 @@ const Home = () => {
 
           <div className="absolute left-[10%] w-[80%] -bottom-[20px] h-[20px] z-[1]"></div>
         </div>
+
         <div className="flex flex-col gap-y-3.5 midMd:h-[400px] w-full midMd:w-[35%] xl:w-2/5">
-          <TopCharts topChartsData={topChartsData} />
+          <h3 className="head-text">Top charts</h3>
+          <TopCharts />
         </div>
       </div>
 

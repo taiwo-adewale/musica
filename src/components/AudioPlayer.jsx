@@ -20,8 +20,6 @@ const AudioPlayer = ({
     }
   }
 
-  console.log(ref);
-
   useEffect(() => {
     ref.current.volume = volume;
   }, [volume]);

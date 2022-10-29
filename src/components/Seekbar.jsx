@@ -7,7 +7,7 @@ const Seekbar = ({ appTime, setSeekTime, min, max }) => {
       value={appTime}
       min={min}
       max={max}
-      step={0.5}
+      step={1}
       onChange={(e) => setSeekTime(e.target.value)}
       className="app__player-slider"
     />

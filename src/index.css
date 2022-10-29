@@ -52,32 +52,6 @@ svg {
   }
 }
 
-@media screen and (min-width: 576px) {
-  .app__album-underlay {
-    background-image: linear-gradient(
-        to bottom,
-        rgba(29, 33, 35, 0.75) 0%,
-        rgba(29, 33, 35, 0.999) 80%
-      ),
-      url("./assets/album-01.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .app__album-underlay {
-    background-image: linear-gradient(
-        to bottom,
-        rgba(29, 33, 35, 0.75) 0%,
-        rgba(29, 33, 35, 0.999) 50%
-      ),
-      url("./assets/album-01.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-}
-
 .collections-grid {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }

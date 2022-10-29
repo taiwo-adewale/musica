@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Track = ({ activeSong }) => {
   return (
@@ -10,7 +11,12 @@ const Track = ({ activeSong }) => {
       />
 
       <div className="flex flex-col mt-1 min-w-0">
-        <h4 className="text-sm truncate">{activeSong?.title}</h4>
+        <Link
+          to={activeSong && `/songs/${activeSong.key}`}
+          className="text-sm truncate"
+        >
+          {activeSong?.title}
+        </Link>
         <span className="text-[12px] text-[rgba(255,255,255,0.44)] truncate">
           {activeSong?.subtitle}
         </span>

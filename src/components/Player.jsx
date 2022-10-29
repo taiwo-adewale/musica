@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { images } from "../constants";
 import { FaPause } from "react-icons/fa";
-import { playPause } from "../redux/features/playerSlice";
+import { playPause, nextSong, prevSong } from "../redux/features/playerSlice";
 import VolumeBar from "./VolumeBar";
 import Seekbar from "./Seekbar";
 import AudioPlayer from "./AudioPlayer";
@@ -12,19 +12,14 @@ import Track from "./Track";
 const Player = () => {
   const dispatch = useDispatch();
 
-  const { isPlaying, activeSong, currentIndex, currentSongs } = useSelector(
-    (state) => state.player
-  );
+  const { isPlaying, isPlayerActive, activeSong, currentIndex, currentSongs } =
+    useSelector((state) => state.player);
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
   const [volume, setVolume] = useState(0.4);
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setShuffle] = useState(false);
-
-  useEffect(() => {
-    if (currentSongs.length) dispatch(playPause(true));
-  }, [currentIndex]);
 
   const handlePlayPause = () => {
     isPlaying ? dispatch(playPause(false)) : dispatch(playPause(true));
@@ -51,7 +46,11 @@ const Player = () => {
   };
 
   return (
-    <div className="app__player z-[19] fixed left-0 bottom-0 right-0 h-[90px] md:h-[110px] bg-[rgba(29,33,35,0.3)] border-t border-t-[rgba(255,255,255,0.1)] xs:px-4 px-8 lg:pl-24 lg:pr-[60px] py-6">
+    <div
+      className={`app__player z-[19] fixed left-0 right-0 h-[90px] md:h-[110px] bg-[rgba(29,33,35,0.3)] border-t border-t-[rgba(255,255,255,0.1)] xs:px-4 px-8 lg:pl-24 lg:pr-[60px] py-6 transition-all duration-500 ${
+        isPlayerActive ? "bottom-0" : "-bottom-[90px] md:-bottom-[110px]"
+      }`}
+    >
       <div className="flex gap-x-6 w-full h-full items-center">
         <Track activeSong={activeSong} />
 
@@ -102,10 +101,7 @@ const Player = () => {
           />
         </div>
 
-        <VolumeBar
-          volume={volume}
-          setVolume={(e) => setVolume(e.target.value)}
-        />
+        <VolumeBar volume={volume} setVolume={setVolume} />
 
         <div className="flex gap-x-5 xs:gap-x-3 mr-1.5 items-center md:hidden">
           <div
@@ -118,7 +114,7 @@ const Player = () => {
               images.playIcon
             )}
           </div>
-          {images.nextIcon}
+          <span onClick={handleNextSong}>{images.nextIcon}</span>
         </div>
       </div>
     </div>
