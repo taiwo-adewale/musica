@@ -10,7 +10,7 @@ const NavMobile = ({ isToggled, setIsToggled }) => {
   const ref = useRef();
 
   useEffect(() => {
-    const closeNavbar = (e) => {
+    const handleOutsideClick = (e) => {
       if (
         isToggled &&
         ref.current &&
@@ -21,10 +21,10 @@ const NavMobile = ({ isToggled, setIsToggled }) => {
       }
     };
 
-    document.body.addEventListener("click", closeNavbar);
+    document.body.addEventListener("click", handleOutsideClick);
 
     return () => {
-      document.body.removeEventListener("click", closeNavbar);
+      document.body.removeEventListener("click", handleOutsideClick);
     };
   }, []);
 

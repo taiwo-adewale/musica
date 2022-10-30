@@ -1,6 +1,4 @@
-export { default as topCharts } from './topCharts'
-export { default as likes } from './likes'
-export { default as newReleases } from './newReleases'
-export { default as popular } from './popular'
-export { default as albumSongs } from './albumSongs'
-export { default as collections } from './collections'
+export { default as likes } from "./likes";
+export { default as newReleases } from "./newReleases";
+export { default as popular } from "./popular";
+export { default as collections } from "./collections";
