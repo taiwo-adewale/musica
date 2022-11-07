@@ -5,6 +5,7 @@
 - [Introduction](#introduction)
 - [Technologies](#technologies)
 - [Project Status](#project-status)
+- [Live Site](#live-site)
 
 ### Introduction
 
@@ -20,5 +21,9 @@ Musica is the October challenge of the #coding360challenge by @codingossy on twi
 - Swiper JS
 
 ### Project Status
+
+Project is now completed and no new features will be added
+
+### Live Site
 
 Click here to visit [Musica](https://musica-wale.netlify.app)
