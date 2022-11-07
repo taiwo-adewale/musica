@@ -1,16 +1,13 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
 import { AppWrap } from "../wrapper";
 import { images } from "../constants";
 import { TopCharts, SongSlider } from "../components";
-// import { topCharts, likes, newReleases, popular } from "../data";
 import { likes } from "../data";
 import {
   useGetPopularSongsQuery,
   useGetNewReleasesQuery,
 } from "../redux/services/shazamCore";
-import { setActiveSong } from "../redux/features/playerSlice";
 
 const Home = () => {
   const {

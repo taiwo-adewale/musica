@@ -21,4 +21,4 @@ Musica is the October challenge of the #coding360challenge by @codingossy on twi
 
 ### Project Status
 
-This project is still under development and when completed, a link to the live site will be added
+Click here to visit [Musica](https://musica-wale.netlify.app)
