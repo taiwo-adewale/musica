@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { images } from "../constants";
 import { Loader, Error, TopChartsMobile } from "./index";
-import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 import { setActiveSong, setTopCharts } from "../redux/features/playerSlice";
+import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 
 const TopCharts = () => {
   const { topCharts, currentSongs } = useSelector((state) => state.player);
@@ -26,6 +26,10 @@ const TopCharts = () => {
     }
   }, [data]);
 
+  const handleSetActiveSong = (song, data, i) => {
+    dispatch(setActiveSong({ song, data, i }));
+  };
+
   if (isFetching) return <Loader title="Loading top charts..." />;
 
   if (error) return <Error />;
@@ -33,23 +37,30 @@ const TopCharts = () => {
   return (
     <>
       {topCharts &&
-        topCharts.slice(0, 3).map((song) => (
-          <div key={song.key} className="hidden midMd:flex flex-col gap-y-3">
+        topCharts.slice(0, 3).map((song, index) => (
+          <div key={song.id} className="hidden midMd:flex flex-col gap-y-3">
             <div className="bg-altDark flex rounded-[20px] p-4 gap-x-3 xl:gap-x-3.5 items-start justify-start">
-              <img
-                src={song.images?.coverart}
-                alt={song.title}
-                className="w-16 h-16 rounded-[10px]"
-              />
+              <Link to={`/songs/${song.id}`}>
+                <img
+                  src={song?.cover}
+                  alt={song.title}
+                  className="w-16 h-16 rounded-[10px]"
+                  onClick={() => handleSetActiveSong(song, topCharts, index)}
+                />
+              </Link>
 
               <div className="flex flex-col flex-1 justify-start min-w-0">
-                <Link to={`/songs/${song.key}`} className="truncate">
+                <Link
+                  to={`/songs/${song.id}`}
+                  className="truncate"
+                  onClick={() => handleSetActiveSong(song, topCharts, index)}
+                >
                   {song.title}
                 </Link>
                 <p className="text-[12px] text-[rgba(255,255,255,0.5)] mb-1 truncate">
-                  {song.subtitle}
+                  {song.artist}
                 </p>
-                <span className="text-[12px]">2:01</span>
+                <span className="text-[12px]">{song.duration}</span>
               </div>
 
               <div className="flex-center flex-shrink-0 h-full">
@@ -62,7 +73,7 @@ const TopCharts = () => {
         ))}
 
       <div className="flex midMd:hidden">
-        {topCharts && <TopChartsMobile data={topCharts} />}
+        {topCharts && <TopChartsMobile topCharts={topCharts} />}
       </div>
     </>
   );

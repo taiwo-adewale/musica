@@ -7,6 +7,7 @@ const initialState = {
   currentSongs: null,
   activeSong: {},
   topCharts: null,
+  playlists: null,
 };
 
 const playerSlice = createSlice({
@@ -15,38 +16,27 @@ const playerSlice = createSlice({
   reducers: {
     setActiveSong: (state, action) => {
       state.activeSong = action.payload.song;
-
-      if (action.payload?.data?.tracks?.hits) {
-        state.currentSongs = action.payload.data.tracks.hits;
-      } else if (action.payload?.data?.properties) {
-        state.currentSongs = action.payload?.data?.tracks;
-      } else {
-        state.currentSongs = action.payload.data;
-      }
+      state.currentSongs = action.payload.data;
 
       state.currentIndex = action.payload.i;
       state.isPlayerActive = true;
+
+      if (action.payload.col) {
+        state.isPlaying = true;
+      }
     },
     playPause: (state, action) => {
       state.isPlaying = action.payload;
     },
     nextSong: (state, action) => {
-      if (state.currentSongs[action.payload]?.track) {
-        state.activeSong = state.currentSongs[action.payload]?.track;
-      } else {
-        state.activeSong = state.currentSongs[action.payload];
-      }
+      state.activeSong = state.currentSongs[action.payload];
 
       state.currentIndex = action.payload;
       state.isPlaying = true;
       state.isPlayerActive = true;
     },
     prevSong: (state, action) => {
-      if (state.currentSongs[action.payload]?.track) {
-        state.activeSong = state.currentSongs[action.payload]?.track;
-      } else {
-        state.activeSong = state.currentSongs[action.payload];
-      }
+      state.activeSong = state.currentSongs[action.payload];
 
       state.currentIndex = action.payload;
       state.isPlayerActive = true;
@@ -54,10 +44,19 @@ const playerSlice = createSlice({
     setTopCharts: (state, action) => {
       state.topCharts = action.payload;
     },
+    setPlaylists: (state, action) => {
+      state.playlists = action.payload;
+    },
   },
 });
 
-export const { setActiveSong, playPause, nextSong, prevSong, setTopCharts } =
-  playerSlice.actions;
+export const {
+  setActiveSong,
+  playPause,
+  nextSong,
+  prevSong,
+  setTopCharts,
+  setPlaylists,
+} = playerSlice.actions;
 
 export default playerSlice.reducer;

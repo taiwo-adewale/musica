@@ -65,6 +65,10 @@ svg {
   @apply select-none;
 }
 
+.text-shadow {
+  text-shadow: 0 0 5px black;
+}
+
 /* Player Sliders */
 .app__player-slider {
   @apply py-2.5 -mb-2.5 bg-transparent;

@@ -5,10 +5,26 @@ import { AppWrap } from "../wrapper";
 import { images } from "../constants";
 import { TopCharts, SongSlider } from "../components";
 // import { topCharts, likes, newReleases, popular } from "../data";
-import { likes, newReleases, popular } from "../data";
+import { likes } from "../data";
+import {
+  useGetPopularSongsQuery,
+  useGetNewReleasesQuery,
+} from "../redux/services/shazamCore";
 import { setActiveSong } from "../redux/features/playerSlice";
 
 const Home = () => {
+  const {
+    data: popularSongs,
+    isFetching: isFetchingPopularSongs,
+    error: popularSongsError,
+  } = useGetPopularSongsQuery();
+
+  const {
+    data: newReleases,
+    isFetching: isFetchingNewReleases,
+    error: newReleasesError,
+  } = useGetNewReleasesQuery();
+
   return (
     <>
       <div className="flex flex-wrap midMd:flex-nowrap w-full gap-x-6 gap-y-6 py-4">
@@ -71,13 +87,23 @@ const Home = () => {
       <section className="pt-8 space-y-3">
         <h3 className="head-text">New releases.</h3>
 
-        <SongSlider data={newReleases} keyName="newRelease" />
+        <SongSlider
+          data={newReleases}
+          isFetching={isFetchingNewReleases}
+          error={newReleasesError}
+          loadingMsg="Loading new releases..."
+        />
       </section>
 
       <section className="pt-8 space-y-3">
         <h3 className="head-text">Popular in your area</h3>
 
-        <SongSlider data={popular} keyName="popular" />
+        <SongSlider
+          data={popularSongs}
+          isFetching={isFetchingPopularSongs}
+          error={popularSongsError}
+          loadingMsg="Loading popular songs..."
+        />
       </section>
     </>
   );

@@ -30,7 +30,7 @@ const AudioPlayer = ({
 
   return (
     <audio
-      src={activeSong?.hub?.actions[1]?.uri}
+      src={activeSong?.audio}
       ref={ref}
       loop={repeat}
       onEnded={onEnded}
