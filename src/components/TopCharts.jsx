@@ -26,8 +26,8 @@ const TopCharts = () => {
     }
   }, [data]);
 
-  const handleSetActiveSong = (song, data, i) => {
-    dispatch(setActiveSong({ song, data, i }));
+  const handleSetActiveSong = (song, data, i, playNow) => {
+    dispatch(setActiveSong({ song, data, i, playNow }));
   };
 
   if (isFetching) return <Loader title="Loading top charts..." />;
@@ -45,7 +45,9 @@ const TopCharts = () => {
                   src={song?.cover}
                   alt={song.title}
                   className="w-16 h-16 rounded-[10px]"
-                  onClick={() => handleSetActiveSong(song, topCharts, index)}
+                  onClick={() =>
+                    handleSetActiveSong(song, topCharts, index, true)
+                  }
                 />
               </Link>
 
@@ -53,7 +55,9 @@ const TopCharts = () => {
                 <Link
                   to={`/songs/${song.id}`}
                   className="truncate"
-                  onClick={() => handleSetActiveSong(song, topCharts, index)}
+                  onClick={() =>
+                    handleSetActiveSong(song, topCharts, index, true)
+                  }
                 >
                   {song.title}
                 </Link>

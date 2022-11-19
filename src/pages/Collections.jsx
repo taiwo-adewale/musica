@@ -18,8 +18,8 @@ const Collections = () => {
     }
   }, [data]);
 
-  const handleSetActiveSong = (song, data, i, col) => {
-    dispatch(setActiveSong({ song, data, i, col }));
+  const handleSetActiveSong = (song, data, i, playNow) => {
+    dispatch(setActiveSong({ song, data, i, playNow }));
   };
 
   if (isFetching) return <Loader title="Loading playlists..." />;

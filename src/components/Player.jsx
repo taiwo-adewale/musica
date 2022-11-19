@@ -91,6 +91,7 @@ const Player = () => {
           />
           <AudioPlayer
             seekTime={seekTime}
+            appTime={appTime}
             activeSong={activeSong}
             isPlaying={isPlaying}
             repeat={repeat}

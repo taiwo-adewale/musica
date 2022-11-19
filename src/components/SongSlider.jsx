@@ -15,8 +15,8 @@ const SongSlider = ({ data, isFetching, error, loadingMsg }) => {
 
   const dispatch = useDispatch();
 
-  const handleSetActiveSong = (song, data, i) => {
-    dispatch(setActiveSong({ song, data, i }));
+  const handleSetActiveSong = (song, data, i, playNow) => {
+    dispatch(setActiveSong({ song, data, i, playNow }));
   };
 
   return (
@@ -39,12 +39,12 @@ const SongSlider = ({ data, isFetching, error, loadingMsg }) => {
               src={song?.cover}
               alt="new release"
               className="cursor-pointer rounded-[25px] mb-[5px] h-[180px] sm:h-[200px] lg:h-[220px] xl:h-[250px] xxl:h-[300px]"
-              onClick={() => handleSetActiveSong(song, data, index)}
+              onClick={() => handleSetActiveSong(song, data, index, true)}
             />
 
             <h4
               className="text-sm cursor-pointer"
-              onClick={() => handleSetActiveSong(song, data, index)}
+              onClick={() => handleSetActiveSong(song, data, index, true)}
             >
               {song.title}
             </h4>

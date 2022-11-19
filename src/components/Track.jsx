@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 const Track = ({ activeSong }) => {
   return (
     <div className="w-1/2 flex-grow md:w-1/5 xl:w-[15%] flex gap-x-3">
-      <Link to={activeSong && `/songs/${activeSong.id}`}>
+      <Link
+        to={activeSong && `/songs/${activeSong.id}`}
+        className="flex-shrink-0"
+      >
         <img
           src={activeSong?.cover}
           alt="cover art"

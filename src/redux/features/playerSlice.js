@@ -21,7 +21,7 @@ const playerSlice = createSlice({
       state.currentIndex = action.payload.i;
       state.isPlayerActive = true;
 
-      if (action.payload.col) {
+      if (action.payload.playNow) {
         state.isPlaying = true;
       }
     },

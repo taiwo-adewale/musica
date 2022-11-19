@@ -10,6 +10,9 @@ export const shazamCoreApi = createApi({
     getNewReleases: builder.query({ query: () => "/new" }),
     getPopularSongs: builder.query({ query: () => "/popular" }),
     getPlaylists: builder.query({ query: () => "/playlist" }),
+    getSongDetails: builder.query({
+      query: (category) => `/${category}`,
+    }),
   }),
 });
 
@@ -18,4 +21,5 @@ export const {
   useGetNewReleasesQuery,
   useGetPopularSongsQuery,
   useGetPlaylistsQuery,
+  useGetSongDetailsQuery,
 } = shazamCoreApi;

@@ -1,14 +1,41 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { images } from "../constants";
 import { AppWrap } from "../wrapper";
 import { setActiveSong } from "../redux/features/playerSlice";
+import { useGetSongDetailsQuery } from "../redux/services/shazamCore";
 
 const SongDetails = () => {
+  const { songid } = useParams();
+  const songIdParams = songid.split("-");
   const dispatch = useDispatch();
   const { activeSong, currentSongs } = useSelector((state) => state.player);
+
+  const {
+    data: songDetailsData,
+    isFetching,
+    error,
+  } = useGetSongDetailsQuery(songIdParams[0]);
+
+  useEffect(() => {
+    if (!currentSongs) {
+      const songId = songIdParams[1] - 1;
+
+      const handleSetActiveSongAlt = (song, data, i, playNow) => {
+        dispatch(setActiveSong({ song, data, i, playNow }));
+      };
+
+      if (!isFetching && !error) {
+        handleSetActiveSongAlt(
+          songDetailsData[songId],
+          songDetailsData,
+          songId
+        );
+      }
+    }
+  }, [songDetailsData]);
 
   useEffect(() => {
     const addHeaderBg = () => {
@@ -27,8 +54,8 @@ const SongDetails = () => {
     };
   }, []);
 
-  const handleSetActiveSong = (song, data, i) => {
-    dispatch(setActiveSong({ song, data, i }));
+  const handleSetActiveSong = (song, data, i, playNow) => {
+    dispatch(setActiveSong({ song, data, i, playNow }));
   };
 
   return (
@@ -90,7 +117,7 @@ const SongDetails = () => {
                       alt={song.title}
                       className="w-10 h-10 rounded-lg"
                       onClick={() =>
-                        handleSetActiveSong(song, currentSongs, index)
+                        handleSetActiveSong(song, currentSongs, index, true)
                       }
                     />
                   </Link>
@@ -102,7 +129,7 @@ const SongDetails = () => {
                     to={`/songs/${song.id}`}
                     className="text-[12px] flex-grow truncate md:w-[60%]"
                     onClick={() =>
-                      handleSetActiveSong(song, currentSongs, index)
+                      handleSetActiveSong(song, currentSongs, index, true)
                     }
                   >
                     {song.title} ~ {song.artist}

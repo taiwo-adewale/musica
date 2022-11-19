@@ -12,8 +12,8 @@ import { setActiveSong } from "../redux/features/playerSlice";
 const TopChartsMobile = ({ topCharts }) => {
   const dispatch = useDispatch();
 
-  const handleSetActiveSong = (song, data, i) => {
-    dispatch(setActiveSong({ song, data, i }));
+  const handleSetActiveSong = (song, data, i, playNow) => {
+    dispatch(setActiveSong({ song, data, i, playNow }));
   };
 
   return (
@@ -39,7 +39,9 @@ const TopChartsMobile = ({ topCharts }) => {
                     src={song?.cover}
                     alt={song.title}
                     className="w-[100px] h-[100px] rounded-[10px]"
-                    onClick={() => handleSetActiveSong(song, topCharts, index)}
+                    onClick={() =>
+                      handleSetActiveSong(song, topCharts, index, true)
+                    }
                   />
                 </Link>
 
@@ -52,7 +54,9 @@ const TopChartsMobile = ({ topCharts }) => {
                 <Link
                   to={`/songs/${song.id}`}
                   className="truncate"
-                  onClick={() => handleSetActiveSong(song, topCharts, index)}
+                  onClick={() =>
+                    handleSetActiveSong(song, topCharts, index, true)
+                  }
                 >
                   {song.title}
                 </Link>
