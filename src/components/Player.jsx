@@ -89,17 +89,19 @@ const Player = () => {
             min={0}
             max={duration}
           />
-          <AudioPlayer
-            seekTime={seekTime}
-            appTime={appTime}
-            activeSong={activeSong}
-            isPlaying={isPlaying}
-            repeat={repeat}
-            volume={volume}
-            onEnded={handleNextSong}
-            onTimeUpdate={(e) => setAppTime(e.target.currentTime)}
-            onLoadedData={(e) => setDuration(e.target.duration)}
-          />
+
+          {isPlayerActive && (
+            <AudioPlayer
+              seekTime={seekTime}
+              activeSong={activeSong}
+              isPlaying={isPlaying}
+              repeat={repeat}
+              volume={volume}
+              onEnded={handleNextSong}
+              onTimeUpdate={(e) => setAppTime(e.target.currentTime)}
+              onLoadedData={(e) => setDuration(e.target.duration)}
+            />
+          )}
         </div>
 
         <VolumeBar volume={volume} setVolume={setVolume} />
