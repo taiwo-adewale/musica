@@ -26,6 +26,3 @@ dist-ssr
 
 # Environment
 .env
-
-# Test file
-src/songsData.js

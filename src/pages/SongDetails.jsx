@@ -85,7 +85,7 @@ const SongDetails = () => {
               {activeSong?.artist || "Loading artistes..."}
             </p>
 
-            <p className="text-sm text-light">{activeSong.duration}</p>
+            <p className="text-sm text-light">{activeSong?.duration}</p>
           </div>
 
           <div className="flex flex-wrap gap-2.5 mb-2">
